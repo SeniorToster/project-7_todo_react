@@ -28,3 +28,32 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .newTack {
+    margin-bottom: 20px;
+    &__input {
+      padding: 6px 16px;
+      font-size: 14px;
+    }
+    &__add {
+      height: 40px;
+      width: 40px;
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  .newTack {
+    margin-bottom: 20px;
+    &__input {
+      width: 94%;
+      padding: 6px 16px;
+      font-size: 14px;
+    }
+    &__add {
+      height: 40px;
+      width: 40px;
+    }
+  }
+}

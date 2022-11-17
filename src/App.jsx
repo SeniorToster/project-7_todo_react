@@ -10,6 +10,7 @@ function App() {
     { text: 'все', isPressed: true, id: uuid() },
   ]);
   const [clickedCategory, setClickedCategory] = useState(categories[0].text);
+  const [activeMenu, setActiveMenu] = useState(false);
 
   // Добавление category
   const addCategoriesHandle = text => {
@@ -100,6 +101,8 @@ function App() {
         addCategories={addCategoriesHandle}
         changeCategory={changeCategoryHandle}
         deleteCategory={deleteCategoryHandle}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
       />
       <MainTodo
         clickedCategory={clickedCategory}
