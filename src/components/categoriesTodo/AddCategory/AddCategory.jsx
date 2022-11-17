@@ -8,6 +8,7 @@ function AddCategory({ addCategories }) {
   const submitCategory = e => {
     e.preventDefault();
     addCategories(text);
+    setText('');
   };
 
   return (
@@ -18,6 +19,7 @@ function AddCategory({ addCategories }) {
         action=''
       >
         <input
+          maxLength={20}
           placeholder='Добавить категорию'
           className={styles.newCategories__input}
           type='text'

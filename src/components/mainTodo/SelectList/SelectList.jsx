@@ -9,7 +9,7 @@ function SelectList({ task, categories, changeSelect }) {
       disabled={task.isChecked}
     >
       {categories.map((category, index) => (
-        <option key={index}>{category.text}</option>
+        <option key={category.id}>{category.text}</option>
       ))}
     </select>
   );

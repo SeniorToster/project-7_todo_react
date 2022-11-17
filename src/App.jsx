@@ -1,75 +1,90 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import './App.scss';
-import CategoriesTasks from './components/categoriesTodo/CategoriesTasks';
+import CategoriesTodo from './components/CategoriesTodo/CategoriesTodo';
 import MainTodo from './components/mainTodo/MainTodo';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [categories, setCategories] = useState([
-    { text: 'все', isPressed: true },
+    { text: 'все', isPressed: true, id: uuid() },
   ]);
-  const [clickedCategory, setClickedCategory] = useState('все');
+  const [clickedCategory, setClickedCategory] = useState(categories[0].text);
 
   // Добавление category
   const addCategoriesHandle = text => {
-    if (!text) {
-      return alert('категория не может быть пустой');
-    }
+    const noSpacesText = text.trim();
 
-    if (categories.filter(category => category.text === text).length) {
+    if (!noSpacesText) return alert('категория не может быть пустой');
+
+    if (categories.filter(category => category.text === noSpacesText).length)
       return alert('данная категория уже есть');
-    }
 
-    setCategories([...categories, { text, isPressed: false }]);
+    setCategories([
+      ...categories,
+      { text: noSpacesText, isPressed: false, id: uuid() },
+    ]);
   };
 
   // Изменение category
   const changeCategoryHandle = text => {
-    setCategories(
-      categories.map(category => {
-        return text === category.text
-          ? { ...category, isPressed: true }
-          : { ...category, isPressed: false };
-      })
-    );
+    const newCategories = categories.map(category => {
+      return text === category.text
+        ? { ...category, isPressed: true }
+        : { ...category, isPressed: false };
+    });
+    setCategories(newCategories);
     setClickedCategory(text);
+  };
+
+  // Удаление category
+  const deleteCategoryHandle = category => {
+    const newTasks = tasks.map(task =>
+      task.select === category.text
+        ? { ...task, select: categories[0].text }
+        : task
+    );
+    const newCategories = categories.filter(cater => cater.id !== category.id);
+
+    if (category.text === clickedCategory) {
+      newCategories[0].isPressed = true;
+      setClickedCategory(categories[0].text);
+    }
+
+    setTasks(newTasks);
+    setCategories(newCategories);
   };
 
   // Добавление task
   const addTackHandle = text => {
-    if (!text) {
-      return alert('задача не может быть пустой');
-    }
+    const noSpacesText = text.trim();
 
-    if (tasks.filter(task => task.text === text).length) {
+    if (!noSpacesText) return alert('задача не может быть пустой');
+
+    if (tasks.filter(task => task.text === noSpacesText).length)
       return alert('данная задача уже есть');
-    }
 
     setTasks([
       ...tasks,
       {
-        text,
+        text: noSpacesText,
         id: uuid(),
         isChecked: false,
-        select: 'все',
+        select: clickedCategory,
       },
     ]);
   };
 
   // Удаление task
-  const deleteTackHandle = id => {
-    setTasks(tasks.filter(task => task.id !== id));
-  };
+  const deleteTackHandle = id => setTasks(tasks.filter(task => task.id !== id));
 
   // Изменение check в task
-  const CheckedTaskHandle = id => {
+  const CheckedTaskHandle = id =>
     setTasks(
       tasks.map(task =>
         id === task.id ? { ...task, isChecked: !task.isChecked } : task
       )
     );
-  };
 
   // Изменение select в task
   const changeSelectHandle = (id, option) => {
@@ -80,10 +95,11 @@ function App() {
 
   return (
     <div className='Todo'>
-      <CategoriesTasks
+      <CategoriesTodo
         categories={categories}
         addCategories={addCategoriesHandle}
         changeCategory={changeCategoryHandle}
+        deleteCategory={deleteCategoryHandle}
       />
       <MainTodo
         clickedCategory={clickedCategory}
