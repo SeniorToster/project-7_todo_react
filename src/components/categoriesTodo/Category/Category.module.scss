@@ -1,0 +1,17 @@
+@import '../../../variables';
+
+.item {
+  font-weight: 400;
+  font-size: 22px;
+  color: #525252;
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  &_active {
+    font-weight: 700;
+    color: $color-orange;
+  }
+  &:hover {
+    color: $color-orange;
+  }
+}

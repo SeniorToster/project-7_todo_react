@@ -1,0 +1,14 @@
+@import '../../variables';
+.categories {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  border-right: 1px solid #d8d8d8;
+  &__title {
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 37px;
+    color: $color-black;
+    margin-bottom: 30px;
+  }
+}

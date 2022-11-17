@@ -1,0 +1,73 @@
+@import '../../../variables';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+  &:hover .wrapper__delete {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &__check {
+    position: relative;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px $color-orange solid;
+    border-radius: 8px;
+    margin-right: 18px;
+    transition: all 0.1s ease-in-out;
+    & svg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 70%;
+      height: 70%;
+      opacity: 0;
+      color: $color-white;
+    }
+    &:hover {
+      scale: 1.1;
+      transition: all 0.1s ease-in-out;
+    }
+    &_active {
+      background-color: $color-orange;
+      & svg {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 22px;
+    color: $color-grey;
+    word-break: break-all;
+    margin-right: 28px;
+    &_active {
+      text-decoration: line-through;
+      opacity: 0.3;
+    }
+  }
+
+  &__delete {
+    color: $color-orange;
+    flex-shrink: 0;
+    cursor: pointer;
+    opacity: 0;
+    margin-right: 0;
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      scale: 1.1;
+      transition: scale 0.2s ease-in-out;
+    }
+  }
+}

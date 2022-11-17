@@ -1,0 +1,13 @@
+@import '../../_variables';
+
+.main {
+  padding: 30px 40px;
+  width: 100%;
+  &__title {
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 37px;
+    color: $color-black;
+    margin-bottom: 25px;
+  }
+}

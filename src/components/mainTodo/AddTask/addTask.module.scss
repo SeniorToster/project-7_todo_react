@@ -1,0 +1,30 @@
+@import '../../../variables';
+
+.newTack {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
+  &__input {
+    padding: 12px 27px;
+    font-weight: 400;
+    font-size: 18px;
+    width: 90%;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background-color: #f3f3f3;
+  }
+  &__add {
+    height: 45px;
+    width: 45px;
+    color: $color-orange;
+    &:hover {
+      scale: 1.1;
+      transition: scale 0.2s ease-in-out;
+    }
+    & svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
