@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import './App.scss';
-import CategoriesTodo from './components/CategoriesTodo/CategoriesTodo';
+import CategoriesTodo from './components/сategoriesTodo/CategoriesTodo';
 import MainTodo from './components/mainTodo/MainTodo';
 
 function App() {
